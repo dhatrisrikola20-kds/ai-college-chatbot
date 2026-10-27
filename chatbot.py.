@@ -1,0 +1,38 @@
+
+# AI College Chatbot
+# A beginner-friendly college information assistant
+
+college_info = {
+    "admission": "Please contact your college admission office for eligibility and application details.",
+    "courses": "Please check your college website for the latest course list.",
+    "library": "Visit your college library for book availability and timings.",
+    "placements": "Contact your placement cell for company visits, eligibility, and placement training.",
+    "fees": "Please contact your college accounts office for accurate fee details.",
+    "hostel": "Contact the hostel office for room availability, rules, and fee details."
+}
+
+def chatbot():
+    print("🤖 Welcome to the AI College Chatbot!")
+    print("Ask about admission, courses, library, placements, fees, or hostel.")
+    print("Type 'exit' to stop.\n")
+
+    while True:
+        question = input("You: ").lower().strip()
+
+        if question == "exit":
+            print("Bot: Thank you! Have a great day.")
+            break
+
+        found = False
+
+        for topic, answer in college_info.items():
+            if topic in question:
+                print("Bot:", answer)
+                found = True
+                break
+
+        if not found:
+            print("Bot: I don't have that information yet. Please contact your college office.")
+
+if __name__ == "__main__":
+    chatbot()
