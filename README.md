@@ -1,5 +1,5 @@
 # ai-college-chatbot
-# SJCIT AI College Chatbot
+# AI College Chatbot
 
 A menu-driven Python chatbot project designed to help students find college-related information through a simple interactive interface.
 
