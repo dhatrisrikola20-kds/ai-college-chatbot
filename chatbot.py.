@@ -1,38 +1,265 @@
+# SJCIT AI COLLEGE CHATBOT
 
-# AI College Chatbot
-# A beginner-friendly college information assistant
+COLLEGE_WEBSITE = "https://sjcit.ac.in/"
 
-college_info = {
-    "admission": "Please contact your college admission office for eligibility and application details.",
-    "courses": "Please check your college website for the latest course list.",
-    "library": "Visit your college library for book availability and timings.",
-    "placements": "Contact your placement cell for company visits, eligibility, and placement training.",
-    "fees": "Please contact your college accounts office for accurate fee details.",
-    "hostel": "Contact the hostel office for room availability, rules, and fee details."
+DEPARTMENTS = {
+    "1": "Computer Science and Engineering (CSE)",
+    "2": "Artificial Intelligence and Machine Learning (AI & ML)",
+    "3": "Artificial Intelligence and Data Science (AI & DS)",
+    "4": "Electronics and Communication Engineering (ECE)",
+    "5": "Aerospace Engineering",
+    "6": "Aeronautical Engineering",
+    "7": "Mechanical Engineering",
+    "8": "Civil Engineering",
+    "9": "Information Science and Engineering (ISE)"
 }
 
-def chatbot():
-    print("🤖 Welcome to the AI College Chatbot!")
-    print("Ask about admission, courses, library, placements, fees, or hostel.")
-    print("Type 'exit' to stop.\n")
+MENU_OPTIONS = {
+    "1": "Courses and syllabus",
+    "2": "Fee structure",
+    "3": "Exams and timetable",
+    "4": "Faculty information",
+    "5": "Placements and careers",
+    "6": "Department website",
+    "7": "Ask a question"
+}
+
+
+def show_welcome():
+    print("\n" + "=" * 45)
+    print("       SJCIT AI COLLEGE CHATBOT")
+    print("=" * 45)
+    print("Welcome! Your college information assistant.")
+
+
+def choose_department():
+    while True:
+        print("\n========== SELECT DEPARTMENT ==========")
+
+        for number, department in DEPARTMENTS.items():
+            print(number + ". " + department)
+
+        print("0. Exit")
+
+        choice = input("\nChoose your department: ").strip()
+
+        if choice == "0":
+            return None
+
+        if choice in DEPARTMENTS:
+            return DEPARTMENTS[choice]
+
+        print("Invalid choice. Please try again.")
+
+def ask_question(department):
+    print("\n--- ASK YOUR QUESTION ---")
+    print("Department:", department)
+    print("Examples:")
+    print("- What courses are available?")
+    print("- How can I check fees?")
+    print("- When are exams?")
+    print("- Where can I find faculty details?")
+    print("- Tell me about placements")
+    print("Type 'back' to return to the menu.")
 
     while True:
-        question = input("You: ").lower().strip()
+        question = input("\nYou: ").lower().strip()
 
-        if question == "exit":
-            print("Bot: Thank you! Have a great day.")
+        if question == "back":
+            return
+
+        if not question:
+            print("Bot: Please type a question.")
+            continue
+
+        # Identify the topic using keywords
+        if any(word in question for word in
+               ["fee", "fees", "payment", "pay", "cost"]):
+            print("Bot: Fees depend on the course and admission quota.")
+            print("Check the official SJCIT website:")
+            print("https://sjcit.ac.in/")
+
+        elif any(word in question for word in
+                 ["exam", "exams", "test", "timetable", "schedule"]):
+            print("Bot: Check official college notices for exam dates")
+            print("and timetables.")
+            print("Website: https://sjcit.ac.in/")
+
+        elif any(word in question for word in
+                 ["course", "courses", "syllabus", "subject", "subjects"]):
+            print("Bot: You can check course and syllabus information")
+            print("for " + department + " on the official website.")
+            print("Website: https://sjcit.ac.in/")
+
+        elif any(word in question for word in
+                 ["faculty", "teacher", "teachers", "professor"]):
+            print("Bot: Please check the official college website")
+            print("for faculty details for " + department + ".")
+            print("Website: https://sjcit.ac.in/")
+
+        elif any(word in question for word in
+                 ["placement", "placements", "job", "jobs",
+                  "career", "company", "companies"]):
+            print("Bot: Contact the placement cell for eligibility,")
+            print("training, and company updates.")
+            print("Website: https://sjcit.ac.in/")
+
+        elif any(word in question for word in
+                 ["website", "link", "official site", "college site"]):
+            print("Bot: Official SJCIT website:")
+            print("https://sjcit.ac.in/")
+
+        elif any(word in question for word in
+                 ["hello", "hi", "hey"]):
+            print("Bot: Hello! How can I help you with " + department + "?")
+
+        else:
+            print("Bot: Sorry, I don't know that answer yet.")
+            print("Try asking about fees, exams, courses,")
+            print("faculty, placements, or the website.")
+
+
+def show_department_menu(department):
+    while True:
+        print("\n" + "=" * 45)
+        print("DEPARTMENT:", department)
+        print("=" * 45)
+
+        for number, option in MENU_OPTIONS.items():
+            print(number + ". " + option)
+      
+        print("8. Change department")
+        print("0. Exit")
+
+        choice = input("\nChoose an option: ").strip()
+
+        if choice == "0":
+            return "exit"
+
+        if choice == "8":
+            return "change"
+
+        if choice not in MENU_OPTIONS:
+            print("Invalid choice. Please try again.")
+            continue
+        elif choice=="7":
+          ask_question(department)
+        show_information(choice, department)
+
+        input("\nPress Enter to return to the department menu...")
+
+
+def show_information(choice, department):
+    print("\n" + "-" * 45)
+    print(department)
+    print(MENU_OPTIONS[choice].upper())
+    print("-" * 45)
+
+    if choice == "1":
+        print("Explore courses related to your department.")
+        print("Check the official college website for")
+        print("the current course and syllabus details.")
+
+    elif choice == "2":
+        print("Fee details may depend on the course and")
+        print("admission category. Please verify the current")
+        print("fee structure through official college sources.")
+
+    elif choice == "3":
+        print("Check official notices for examination dates,")
+        print("academic calendars and department timetables.")
+
+    elif choice == "4":
+        print("Visit the official college website to find")
+        print("department faculty and contact information.")
+
+    elif choice == "5":
+        print("Contact the placement cell for training,")
+        print("company visits and eligibility requirements.")
+
+    elif choice == "6":
+        print("Official SJCIT website:")
+        print(COLLEGE_WEBSITE)
+
+    elif choice == "7":
+      ask_question(department)
+      
+    elif "what is data science" in question or "about ai" in question:
+         print("Bot: AI & DS combines computing, statistics,")
+         print("data analysis, and artificial intelligence.")
+         print("Learn more:")
+         print("https://sjcit.ac.in/artificial-intelligence-and-data-science/")
+
+    elif "syllabus" in question or "study materials" in question:
+      print("Bot: Check the official SJCIT scheme and syllabus.")
+      print("https://sjcit.ac.in/scheme-and-syllabus/")
+
+    elif "academic calendar" in question or "college calendar" in question:  
+      print("Bot: Check official academic calendars here:")
+      print("https://sjcit.ac.in/academic-information/")
+
+def ask_question(department):
+    question = input("\nAsk your question: ").lower().strip()
+
+    if not question:
+        print("Please enter a question.")
+        return
+
+    keywords = {
+        "courses": ["course", "courses", "syllabus", "subject"],
+        "fees": ["fee", "fees", "payment", "cost"],
+        "exams": ["exam", "exams", "test", "timetable"],
+        "faculty": ["faculty", "teacher", "professor"],
+        "placements": ["placement", "job", "career", "company"],
+        "website": ["website", "official site", "link"]
+    }
+
+    responses = {
+        "courses": "Please check the official syllabus for your department.",
+        "fees": "Please verify the current fee structure with the college.",
+        "exams": "Please check official exam notices and timetables.",
+        "faculty": "Please visit the official college website for faculty details.",
+        "placements": "Please contact the college placement cell.",
+        "website": "Official SJCIT website: " + COLLEGE_WEBSITE
+    }
+
+    for topic, words in keywords.items():
+      if any(word in question for word in words):
+        print("\nBot:", responses[topic])
+        return
+
+    if "academic calendar" in question or "academic calender" in question or "college calendar" in question:
+      print("Bot: Find the academic calendar here:")
+      print("https://sjcit.ac.in/academic-information/")
+
+    elif "syllabus" in question or "study materials" in question:
+        print("Bot: Check the official SJCIT syllabus here:")
+        print("https://sjcit.ac.in/scheme-and-syllabus/")
+
+    elif "data science" in question:
+        print("Bot: Learn about the AI & DS department here:")
+        print("https://sjcit.ac.in/artificial-intelligence-and-data-science/")
+
+    else:
+        print("\nBot: I don't have a verified answer to that question yet.")
+        print("Selected department:", department)
+        print("Please check:", COLLEGE_WEBSITE)
+def main():
+    show_welcome()
+
+    while True:
+        department = choose_department()
+
+        if department is None:
+            print("\nThank you for using SJCIT AI Chatbot!")
             break
 
-        found = False
+        result = show_department_menu(department)
 
-        for topic, answer in college_info.items():
-            if topic in question:
-                print("Bot:", answer)
-                found = True
-                break
+        if result == "exit":
+            print("\nThank you for using SJCIT AI Chatbot!")
+            break
 
-        if not found:
-            print("Bot: I don't have that information yet. Please contact your college office.")
 
-if __name__ == "__main__":
-    chatbot()
+if  __name__ == "__main__":
+    main()
