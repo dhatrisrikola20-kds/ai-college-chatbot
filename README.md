@@ -69,12 +69,12 @@ streamlit run app.py
 ## 📸 Screenshots
 
 ### Chatbot Interface
-<img width="1062" height="592" alt="Screenshot 2026-10-30 221205" src="https://github.com/user-attachments/assets/33075cf5-3400-48bc-80e5-c27722e21938" />
+![Chatbot homepage](chatbot-home.png)
 
 
 
 ### Chatbot Responses
-![Chatbot Responses](screenshots/chatbot-responses.png)
+![Chatbot Responses](chatbot-response.png)
 
 ## 🎯 Learning Outcomes
 
