@@ -1,149 +1,128 @@
 
-# SJCIT AI COLLEGE CHATBOT
-# Chatbot logic for the website
-
 COLLEGE_WEBSITE = "https://sjcit.ac.in/"
 
+SCHEME_URL = "https://sjcit.ac.in/scheme-and-syllabus/"
+
 DEPARTMENTS = {
-    "1": "Computer Science and Engineering (CSE)",
-    "2": "Artificial Intelligence and Machine Learning (AI & ML)",
-    "3": "Artificial Intelligence and Data Science (AI & DS)",
-    "4": "Electronics and Communication Engineering (ECE)",
-    "5": "Aerospace Engineering",
-    "6": "Aeronautical Engineering",
-    "7": "Mechanical Engineering",
-    "8": "Civil Engineering",
-    "9": "Information Science and Engineering (ISE)"
+    "Artificial Intelligence and Data Science (AI & DS)": "AI & DS",
+    "Computer Science and Engineering (CSE)": "CSE",
+    "Information Science and Engineering (ISE)": "ISE",
+    "Electronics and Communication Engineering (ECE)": "ECE",
+    "Electrical and Electronics Engineering (EEE)": "EEE",
+    "Mechanical Engineering": "ME",
+    "Civil Engineering": "CE",
+    "Computer Science and Engineering (AI & ML)": "AI & ML",
+    "Computer Science and Engineering (Data Science)": "CSE (DS)"
 }
 
 MENU_OPTIONS = {
-    "1": "Courses and syllabus",
-    "2": "Fee structure",
-    "3": "Exams and timetable",
-    "4": "Faculty information",
-    "5": "Placements and careers",
-    "6": "Department website",
-    "7": "Ask a question"
+    "1. Courses and syllabus": "syllabus",
+    "2. Fee structure": "fees",
+    "3. Examination details": "exams",
+    "4. Faculty information": "faculty",
+    "5. Placement information": "placements",
+    "6. College website": "website"
 }
 
 
 def get_menu_response(choice, department):
+    topic = MENU_OPTIONS.get(choice)
 
-    responses = {
-        "1": (
-            f"Explore courses and subjects for {department}.\n"
-            "Check the official syllabus:\n"
-            "https://sjcit.ac.in/scheme-and-syllabus/"
-        ),
+    if topic:
+        return get_response(topic, department)
 
-        "2": (
-            "Fees depend on the course and admission category.\n"
-            "Please verify the latest details with the college:\n"
-            + COLLEGE_WEBSITE
-        ),
-
-        "3": (
-            "Check official exam notices and academic calendars:\n"
-            "https://sjcit.ac.in/academic-information/"
-        ),
-
-        "4": (
-            f"Find faculty information for {department} "
-            "through the official college website:\n"
-            + COLLEGE_WEBSITE
-        ),
-
-        "5": (
-            "Contact the placement cell for training, "
-            "company visits and eligibility information:\n"
-            + COLLEGE_WEBSITE
-        ),
-
-        "6": (
-            "Official SJCIT website:\n" + COLLEGE_WEBSITE
-        )
-    }
-
-    if choice in responses:
-        return responses[choice]
-
-    return "Please select a valid option."
+    return "Please select a valid information option."
 
 
 def get_response(question, department):
+    q = question.lower().strip()
+    dept = department
 
-    question = question.lower().strip()
-
-    if not question:
-        return "Please type a question."
-
-    if any(word in question for word in
-           ["hello", "hi", "hey"]):
-        return f"Hello! How can I help you with {department}?"
-
-    if any(word in question for word in
-           ["academic calendar", "academic calender",
-            "college calendar"]):
+    # Greetings
+    if any(word in q for word in ["hello", "hi", "hey", "good morning",
+                                  "good afternoon", "good evening"]):
         return (
-            "Find the official academic calendar here:\n"
-            "https://sjcit.ac.in/academic-information/"
+            f"Hello! Welcome to the SJCIT AI College Chatbot. "
+            f"You selected {dept}. How can I help you?"
         )
 
-    if "data science" in question or "about ai" in question:
-        return (
-            "AI and Data Science combines computing, "
-            "statistics, data analysis and artificial intelligence.\n"
-            "Learn more:\n"
-            "https://sjcit.ac.in/artificial-intelligence-and-data-science/"
-        )
+    # Thank you
+    if any(word in q for word in ["thank you", "thanks", "thank u"]):
+        return "You're welcome! Feel free to ask me anything about SJCIT."
 
-    if any(word in question for word in
-           ["fee", "fees", "payment", "pay", "cost"]):
+    # Goodbye
+    if any(word in q for word in ["bye", "goodbye", "see you"]):
+        return "Goodbye! Have a great day. Visit again!"
+
+    # Placement
+    if any(word in q for word in ["placement", "placements", "job",
+                                  "recruitment", "companies", "package"]):
         return (
-            "Fees depend on the course and admission quota. "
-            "Please verify the current details:\n"
+            "SJCIT students can check placement training, eligibility, "
+            "recruitment drives and company updates through the placement cell. "
+            "For current placement details, visit the official college website: "
             + COLLEGE_WEBSITE
         )
 
-    if any(word in question for word in
-           ["exam", "exams", "test", "timetable", "schedule"]):
+    # Fees
+    if any(word in q for word in ["fee", "fees", "tuition",
+                                  "payment", "scholarship"]):
         return (
-            "Check official college notices for examination dates "
-            "and timetables:\n"
-            "https://sjcit.ac.in/academic-information/"
+            "Fee details may vary by course and admission category. "
+            "Please contact the college admissions office for the latest "
+            "verified fee information: " + COLLEGE_WEBSITE
         )
 
-    if any(word in question for word in
-           ["course", "courses", "syllabus", "subject",
-            "subjects", "study materials"]):
+    # Syllabus
+    if any(word in q for word in ["syllabus", "scheme", "subjects",
+                                  "course", "courses", "curriculum"]):
         return (
-            f"Check course and syllabus information for {department}:\n"
-            "https://sjcit.ac.in/scheme-and-syllabus/"
+            f"Here you can find the scheme and syllabus information "
+            f"for {dept}. Visit: {SCHEME_URL}"
         )
 
-    if any(word in question for word in
-           ["faculty", "teacher", "teachers", "professor"]):
+    # Exams
+    if any(word in q for word in ["exam", "examination", "timetable",
+                                  "results", "internal", "cie"]):
         return (
-            f"Find faculty details for {department} here:\n"
+            "For examination timetables, results and academic updates, "
+            "please check the official college website or examination section: "
             + COLLEGE_WEBSITE
         )
 
-    if any(word in question for word in
-           ["placement", "placements", "job", "jobs",
-            "career", "company", "companies"]):
+    # Faculty
+    if any(word in q for word in ["faculty", "professor", "lecturer",
+                                  "hod", "staff"]):
         return (
-            "Contact the placement cell for training, "
-            "eligibility and company updates:\n"
-            + COLLEGE_WEBSITE
+            f"For verified faculty and department information about {dept}, "
+            f"please visit the official SJCIT website: {COLLEGE_WEBSITE}"
         )
 
-    if any(word in question for word in
-           ["website", "link", "official site", "college site"]):
-        return "Official SJCIT website:\n" + COLLEGE_WEBSITE
+    # Department
+    if any(word in q for word in ["department", "branch", "stream"]):
+        return (
+            f"You have selected {dept}. Ask me about its syllabus, "
+            "courses, exams or placements."
+        )
+
+    # College information
+    if any(word in q for word in ["college", "sjcit", "website",
+                                  "location", "address"]):
+        return (
+            "SJC Institute of Technology is located in Chickballapur, "
+            "Karnataka. Visit the official website: " + COLLEGE_WEBSITE
+        )
+
+    # Help
+    if any(word in q for word in ["help", "what can you do", "options"]):
+        return (
+            "I can help you with SJCIT syllabus, fees, examinations, "
+            "faculty, placements and college information. What would "
+            "you like to know?"
+        )
 
     return (
-        "Sorry, I don't have a verified answer to that question yet.\n"
-        f"Selected department: {department}\n"
-        "Please check the official website:\n"
-        + COLLEGE_WEBSITE
+        f"Sorry, I don't have a verified answer for that yet. "
+        f"You can ask me about {dept}, syllabus, fees, exams or placements. "
+        f"For official information, visit {COLLEGE_WEBSITE}"
     )
