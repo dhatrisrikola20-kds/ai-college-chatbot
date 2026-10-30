@@ -1,47 +1,97 @@
-# ai-college-chatbot
-# AI College Chatbot
+# 🎓 SJCIT AI College Chatbot
 
-A menu-driven Python chatbot project designed to help students find college-related information through a simple interactive interface.
+A simple college information chatbot developed using Python and Streamlit. It helps students access basic information about SJCIT through an interactive web interface.
 
-## Features
+## 🌐 Live Demo
+
+https://ai-college-chatbot-ftwwmcw3udmqkubf8bccl2.streamlit.app
+
+## 📌 Project Overview
+
+The SJCIT AI College Chatbot is a mini project designed to provide quick responses to common college-related questions.
+
+**Note:** This project uses rule-based logic and keyword matching. It is not a trained AI or machine learning model.
+
+## ✨ Features
 
 - Department selection
-- College information and useful official links
-- Keyword-based question answering
-- Access to syllabus and academic calendar resources
-- Option to change departments or exit the chatbot
+- Courses and syllabus information
+- Fee structure guidance
+- Examination information
+- Faculty information
+- Placement information
+- College website access
+- Interactive chat interface
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 - Python
-- Programiz Online Python Compiler
+- Streamlit
 - GitHub
 
-## How to Run
+## 📂 Project Structure
 
-1. Download or clone this repository.
-2. Open `chatbot.py` in a Python environment.
-3. Run the program.
-4. Select a department and choose an option from the menu.
-5. Enter a question when prompted.
+```text
+ai-college-chatbot/
+│
+├── app.py
+├── chatbot.py
+├── requirements.txt
+└── README.md
+```
 
-## Limitations
+## ⚙️ How to Run Locally
 
-The chatbot uses predefined responses and keyword matching. It does not yet use a trained AI model or advanced natural language processing. Some information may need to be checked on the official college website.
+1. Clone this repository:
 
-## Official Resources
+```bash
+git clone https://github.com/dhatrisrikola20-kds/ai-college-chatbot.git
+```
 
-- [SJCIT Official Website](https://sjcit.ac.in/)
-- [Scheme and Syllabus](https://sjcit.ac.in/scheme-and-syllabus/)
-- [Academic Information](https://sjcit.ac.in/academic-information/)
+2. Open the project folder:
 
-## Future Improvements
+```bash
+cd ai-college-chatbot
+```
 
-- Expand department-specific information
-- Improve question matching
-- Add more verified FAQs
-- Explore natural language processing
+3. Install the required package:
 
-## Author
+```bash
+pip install -r requirements.txt
+```
 
-Created as a student programming project to practise Python and build a useful college information chatbot.
+4. Run the application:
+
+```bash
+streamlit run app.py
+```
+
+## 📸 Screenshots
+
+### Chatbot Interface
+<img width="1062" height="592" alt="Screenshot 2026-10-30 221205" src="https://github.com/user-attachments/assets/33075cf5-3400-48bc-80e5-c27722e21938" />
+
+
+
+### Chatbot Responses
+![Chatbot Responses](screenshots/chatbot-responses.png)
+
+## 🎯 Learning Outcomes
+
+- Practised Python programming.
+- Learned to build a web interface using Streamlit.
+- Understood GitHub repository management.
+- Learned application deployment using Streamlit Community Cloud.
+- Improved debugging and problem-solving skills.
+
+## 👩‍💻 Developer
+
+**Dhatri Sri Kola**
+
+B.E. Data Science Student
+
+GitHub: [dhatrisrikola20-kds](https://github.com/dhatrisrikola20-kds)
+
+---
+
+*This project was developed as a learning-oriented mini project.*
